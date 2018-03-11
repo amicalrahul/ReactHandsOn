@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import logo from './logo.svg';
 import './App.css';
-import Book from './book';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Quiz from './Quiz';
 
 class App extends Component {
   render() {
@@ -12,11 +13,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo"/>
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        {
-          this.props.books.map(function (b) {
-           return <Book title={b} />
-          })
-        }
+        <Quiz data={this.props.books} />
+
+        
       </div>
     );
   }
