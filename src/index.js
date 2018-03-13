@@ -1,73 +1,23 @@
+//import 'babel-polyfill';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import _ from 'underscore';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
-import registerServiceWorker from './registerServiceWorker';
+import {render} from 'react-dom';
+import {Router, browserHistory} from 'react-router';
+import routes from './routes';
+//import configureStore from './store/configureStore';
+//import {Provider} from 'react-redux';
+// import {loadCourses} from './actions/courseActions';
+// import {loadAuthors} from './actions/authorActions';
+//import './styles/styles.css'; //Webpack can import CSS files too!
+//import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+//import '../node_modules/toastr/build/toastr.min.css';
 
-var booksData = [
-    {
-        name: 'Mark Twain', 
-        imageUrl: 'images/authors/marktwain.jpg',
-        books: ['The Adventures of Huckleberry Finn']
-    },
-    {
-        name: 'Joseph Conrad',
-        imageUrl: 'images/authors/josephconrad.png',
-        books: ['Heart of Darkness']
-    },
-    {
-        name: 'J.K. Rowling',
-        imageUrl: 'images/authors/jkrowling.jpg',
-        imageSource: 'Wikimedia Commons',
-        imageAttribution: 'Daniel Ogren',
-        books: ['Harry Potter and the Sorcerers Stone']
-    },
-    {
-        name: 'Stephen King',
-        imageUrl: 'images/authors/stephenking.jpg',
-        imageSource: 'Wikimedia Commons',
-        imageAttribution: 'Pinguino',
-        books: ['The Shining','IT']
-    },
-    {
-        name: 'Charles Dickens',
-        imageUrl: 'images/authors/charlesdickens.jpg',
-        imageSource: 'Wikimedia Commons',
-        books: ['David Copperfield', 'A Tale of Two Cities']
-    },
-    {
-        name: 'William Shakespeare',
-        imageUrl: 'images/authors/williamshakespeare.jpg',
-        imageSource: 'Wikimedia Commons',
-        books: ['Hamlet', 'Macbeth', 'Romeo and Juliet']
-    }
-  ];
-  
-  var selectGame = function () {
-    var books = _.shuffle(this.reduce(function (p, c, i) {
-        return p.concat(c.books);
-    }, [])).slice(0,4);
+//const store = configureStore();
 
-    var answer = books[_.random(books.length-1)];
+// Dispatch actions to load initial state.
+//store.dispatch(loadCourses());
+//store.dispatch(loadAuthors());
 
-    return {
-        books: books,
-        author: _.find(this, function (author) {
-            return author.books.some(function (title) {
-                return title === answer;
-            });
-        }),
-        checkAnswer: function (title) {
-            return this.author.books.some(function (t) {
-                return t === title;
-            });
-        }
-    };
-};
-
-booksData.selectGame = selectGame;
-ReactDOM.render(<App books={ booksData } />, document.getElementById('root'));
-registerServiceWorker();
+render(
+    <Router history={browserHistory} routes={routes}/>,
+  document.getElementById('app')
+);
