@@ -41,10 +41,20 @@ namespace ReactHandsOn.Controllers
         {
             return View();
         }
+        [Route("~/comments")]
         [OutputCache(Location = OutputCacheLocation.None)]
         public ActionResult Comments()
         {
             return Json(_comments, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        [Route("~/comments/new")]
+        public ActionResult AddComment(CommentModel comment)
+        {
+            // Create a fake ID for this comment
+            comment.Id = _comments.Count + 1;
+            _comments.Add(comment);
+            return Content("Success :)");
         }
     }
 }

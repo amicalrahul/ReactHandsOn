@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReactHandsOn.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,12 +12,16 @@ namespace ReactHandsOn
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            // route attributes before areas
+            routes.MapMvcAttributeRoutes();
+
+            // area registration
+            AreaRegistration.RegisterAllAreas();
+
+            routes.LowercaseUrls = true;
+
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            routes.MapRoute(
-                name: "Comments",
-                url: "comments",
-                defaults: new { controller = "Home", action = "Comments" }
-            );
+            routes.IgnoreRoute("bundles/{package}");
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
