@@ -39,7 +39,7 @@ namespace ReactHandsOn.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            return View(_comments);
         }
         [Route("~/comments")]
         [OutputCache(Location = OutputCacheLocation.None)]

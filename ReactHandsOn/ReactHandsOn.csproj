@@ -144,6 +144,8 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="readme.txt" />
+    <Content Include="Scripts\external\remarkable.min.js" />
+    <Content Include="Scripts\ReactApp\CommentBox.jsx" />
     <Content Include="Scripts\Tutorial.jsx" />
     <Content Include="Web.config" />
   </ItemGroup>
