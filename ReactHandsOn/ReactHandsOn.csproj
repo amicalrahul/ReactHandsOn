@@ -142,15 +142,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="build\client.bundle.js" />
+    <Content Include="build\server.bundle.js" />
+    <Content Include="Content\client.js" />
+    <Content Include="Content\components\Avatar.jsx" />
+    <Content Include="Content\components\Comment.jsx" />
+    <Content Include="Content\components\CommentsBox.jsx" />
+    <Content Include="Content\components\index.js" />
+    <Content Include="Content\Sample.css" />
+    <Content Include="Content\server.js" />
     <Content Include="Global.asax" />
     <Content Include="readme.txt" />
-    <Content Include="Scripts\external\remarkable.min.js" />
-    <Content Include="Scripts\ReactApp\CommentBox.jsx" />
-    <Content Include="Scripts\Tutorial.jsx" />
     <Content Include="Web.config" />
+    <Content Include="webpack.config.js" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\ReactConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -162,6 +169,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <Content Include="package.json" />
+    <Content Include=".babelrc" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">

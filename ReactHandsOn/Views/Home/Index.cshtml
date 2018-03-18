@@ -1,25 +1,24 @@
-﻿@model IEnumerable<ReactHandsOn.Models.CommentModel>
-@{
-    Layout = null;
-}
+﻿@model ReactHandsOn.Controllers.ViewModels.IndexViewModel
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Hello React</title>
+    <title>ReactJS.NET Webpack Sample</title>
+    <link rel="stylesheet" href="~/Content/Sample.css" />
 </head>
 <body>
-    <div id="content"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
-    @*<script src="@Url.Content("~/Scripts/Tutorial.jsx")"></script>*@
-    @Scripts.Render("~/bundles/main")
-            @Html.ReactInitJavaScript()
-            @Html.React("CommentBox", new
-   {
-       initialData = Model,
-       url = "Comments",
-       submitUrl = "/comments/new",
-       pollInterval = 2000,
-   })
+    <p>
+        This is an example of ReactJS.NET's server-side rendering. The initial state of this
+        comments box is rendered server-side, and additional data is loaded via AJAX and rendered
+        client-side.
+    </p>
+    <!-- Render the component server-side, passing initial props -->
+    @Html.React("Components.CommentsBox", new { initialComments = Model.Comments })
+    <!-- Load all required scripts (React + the site's scripts) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.0.0/umd/react.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.0.0/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.0/prop-types.js"></script>
+    <script src="@Url.Content("~/build/client.bundle.js")"></script>
+    <!-- Render the code to initialise the component -->
+    @Html.ReactInitJavaScript()
 </body>
 </html>

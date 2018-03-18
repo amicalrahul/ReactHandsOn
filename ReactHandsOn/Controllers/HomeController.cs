@@ -1,60 +1,114 @@
-﻿using ReactHandsOn.Models;
-using System;
+﻿/*
+ *  Copyright (c) 2014-Present, Facebook, Inc.
+ *  All rights reserved.
+ *
+ *  This source code is licensed under the BSD-style license found in the
+ *  LICENSE file in the root directory of this source tree. An additional grant 
+ *  of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+// For clarity, this sample has all code in the one file. In a real project, you'd put every
+// class in a separate file.
+
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
+using ReactHandsOn.Controllers.Models;
+using ReactHandsOn.Controllers.ViewModels;
 
-namespace ReactHandsOn.Controllers
+namespace ReactHandsOn.Controllers.Models
+{
+    public class AuthorModel
+    {
+        public string Name { get; set; }
+        public string GithubUsername { get; set; }
+    }
+    public class CommentModel
+    {
+        public AuthorModel Author { get; set; }
+        public string Text { get; set; }
+    }
+}
+
+namespace ReactHandsOn.Controllers.ViewModels
+{
+    public class IndexViewModel
+    {
+        public IEnumerable<CommentModel> Comments { get; set; }
+        public int CommentsPerPage { get; set; }
+        public int Page { get; set; }
+    }
+}
+
+namespace ReactHandsOn.Controllers.Controllers
 {
     public class HomeController : Controller
     {
-        private static readonly IList<CommentModel> _comments;
+        private const int COMMENTS_PER_PAGE = 3;
 
-        static HomeController()
+        private readonly IDictionary<string, AuthorModel> _authors;
+        private readonly IList<CommentModel> _comments;
+
+        public HomeController()
         {
+            // In reality, you would use a repository or something for fetching data
+            // For clarity, we'll just use a hard-coded list.
+            _authors = new Dictionary<string, AuthorModel>
+            {
+                {"daniel", new AuthorModel { Name = "Daniel Lo Nigro", GithubUsername = "Daniel15" }},
+                {"vjeux", new AuthorModel { Name = "Christopher Chedeau", GithubUsername = "vjeux" }},
+                {"cpojer", new AuthorModel { Name = "Christoph Pojer", GithubUsername = "cpojer" }},
+                {"jordwalke", new AuthorModel { Name = "Jordan Walke", GithubUsername = "jordwalke" }},
+                {"zpao", new AuthorModel { Name = "Paul O'Shannessy", GithubUsername = "zpao" }},
+            };
             _comments = new List<CommentModel>
             {
-                new CommentModel
-                {
-                    Id = 1,
-                    Author = "Daniel Lo Nigro",
-                    Text = "Hello ReactJS.NET World!"
-                },
-                new CommentModel
-                {
-                    Id = 2,
-                    Author = "Pete Hunt",
-                    Text = "This is one comment"
-                },
-                new CommentModel
-                {
-                    Id = 3,
-                    Author = "Jordan Walke",
-                    Text = "This is *another* comment"
-                },
+                new CommentModel { Author = _authors["daniel"], Text = "First!!!!111!" },
+                new CommentModel { Author = _authors["zpao"], Text = "React is awesome!" },
+                new CommentModel { Author = _authors["cpojer"], Text = "Awesome!" },
+                new CommentModel { Author = _authors["vjeux"], Text = "Hello World" },
+                new CommentModel { Author = _authors["daniel"], Text = "Foo" },
+                new CommentModel { Author = _authors["daniel"], Text = "Bar" },
+                new CommentModel { Author = _authors["daniel"], Text = "FooBarBaz" },
             };
         }
-        // GET: Home
+
         public ActionResult Index()
         {
-            return View(_comments);
+            return View(new IndexViewModel
+            {
+                Comments = _comments.Take(COMMENTS_PER_PAGE),
+                CommentsPerPage = COMMENTS_PER_PAGE,
+                Page = 1
+            });
         }
-        [Route("~/comments")]
-        [OutputCache(Location = OutputCacheLocation.None)]
-        public ActionResult Comments()
+
+        [OutputCache(Duration = 0, Location = OutputCacheLocation.Any, VaryByHeader = "Content-Type")]
+        [Route("~/comments/page-{page}")]
+        public ActionResult Comments(int page)
         {
-            return Json(_comments, JsonRequestBehavior.AllowGet);
-        }
-        [HttpPost]
-        [Route("~/comments/new")]
-        public ActionResult AddComment(CommentModel comment)
-        {
-            // Create a fake ID for this comment
-            comment.Id = _comments.Count + 1;
-            _comments.Add(comment);
-            return Content("Success :)");
+            Response.Cache.SetOmitVaryStar(true);
+            var comments = _comments.Skip((page - 1) * COMMENTS_PER_PAGE).Take(COMMENTS_PER_PAGE);
+            var hasMore = page * COMMENTS_PER_PAGE < _comments.Count;
+
+            if (ControllerContext.HttpContext.Request.ContentType == "application/json")
+            {
+                return Json(new
+                {
+                    comments = comments,
+                    hasMore = hasMore
+                }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return View("Index", new IndexViewModel
+                {
+                    Comments = _comments.Take(COMMENTS_PER_PAGE * page),
+                    CommentsPerPage = COMMENTS_PER_PAGE,
+                    Page = page
+                });
+            }
         }
     }
 }
