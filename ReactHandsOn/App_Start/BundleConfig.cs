@@ -13,8 +13,8 @@ namespace ReactHandsOn
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new BabelBundle("~/bundles/main")
-                .Include("~/Scripts/external/remarkable.min.js")
-                .Include("~/Scripts/Tutorial.jsx"));
+                //.Include("~/Scripts/external/remarkable.min.js")
+                .Include("~/build/bundle.client.js"));
 
             // Forces files to be combined and minified in debug mode
             // Only used here to demonstrate how combination/minification works
