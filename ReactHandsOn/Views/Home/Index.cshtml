@@ -1,27 +1,20 @@
-﻿@model IEnumerable<ReactHandsOn.Models.CommentModel>
-@{
-    Layout = null;
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_ReactLayout.cshtml";
 }
-<html>
-<head>
-    <title>Hello React</title>
-</head>
-<body>
-    <div id="content"></div>
-    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom.js"></script>*@
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.0.0/umd/react.development.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.0.0/umd/react-dom.development.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.0/prop-types.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
-    @Scripts.Render("~/bundles/main")
-    @Html.ReactInitJavaScript()
-            @Html.React("Components.CommentBox", new
-   {
-       initialData = Model,
-       url = "Comments",
-       submitUrl = "/comments/new",
-       pollInterval = 2000,
-   })
-</body>
-</html>
+<h3>
+    This is an ASP.NET MVC5 web site using <a href="http://facebook.github.io/react/">React</a>
+</h3>
+
+<hr />
+
+<div id='root'>
+</div>
+
+@section scripts{
+    <script src="~/js/vendor.js"></script>
+    <script type="text/javascript">
+        self._babelPolyfill = false;    //HACK: see http://stackoverflow.com/a/36672020/1434764
+    </script>
+    <script src="~/js/main.js"></script>
+}

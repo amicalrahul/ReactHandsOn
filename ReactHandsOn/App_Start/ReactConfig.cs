@@ -22,7 +22,8 @@ namespace ReactHandsOn
             // ReactJS.NET's version of Babel and loading the pre-transpiled 
             // scripts. Example:
             ReactSiteConfiguration.Configuration
-                .SetLoadBabel(true)
+                .DisableServerSideRendering()
+                .SetLoadBabel(false)
                 .AddScriptWithoutTransform("~/build/bundle.server.js");
         }
 	}

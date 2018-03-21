@@ -1,19 +1,20 @@
 ﻿
 import CommentList from './CommentList';
 import CommentForm from'./CommentForm';
-import React from'react';
-import PropTypes from'prop-types';
-class CommentBox extends React.Component {
+import React, { Component, PropTypes } from 'react';
+class CommentBox extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            data: this.props.initialData
+            data: {}
         };
-        //handleCommentSubmit = this.handleCommentSubmit.bind(this);
-        //loadCommentsFromServer = this.loadCommentsFromServer.bind(this);
+        this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
+        this.loadCommentsFromServer = this.loadCommentsFromServer.bind(this);
     }
-
+    componentDidMount() {
+        this.loadCommentsFromServer();
+    }
     loadCommentsFromServer() {
         var xhr = new XMLHttpRequest();
         xhr.open('get', this.props.url, true);
@@ -52,5 +53,5 @@ class CommentBox extends React.Component {
         );
     }
 }
-module.exports = CommentBox;
-//export default CommentBox;
+//module.exports = CommentBox;
+export default CommentBox;

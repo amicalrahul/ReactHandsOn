@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Optimization;
-using System.Web.Optimization.React;
+//using System.Web.Optimization.React;
 
 namespace ReactHandsOn
 {
@@ -12,7 +12,7 @@ namespace ReactHandsOn
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new BabelBundle("~/bundles/main")
+            bundles.Add(new ScriptBundle("~/bundles/main")
                 //.Include("~/Scripts/external/remarkable.min.js")
                 .Include("~/build/bundle.client.js"));
 

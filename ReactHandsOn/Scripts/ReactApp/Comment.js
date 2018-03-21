@@ -1,7 +1,6 @@
 ﻿
-import React from 'react';
-import PropTypes from 'prop-types';
-class Comment extends React.Component {
+import React, { Component, PropTypes } from 'react';
+class Comment extends Component {
     rawMarkup() {
         //var md = new Remarkable();//(global.Remarkable || window.Remarkable)();;
         //var rawMarkup = md.render(this.props.children.toString());
@@ -19,5 +18,5 @@ class Comment extends React.Component {
         );
     }
 };
-module.exports = Comment;
-//export default  Comment;
+//module.exports = Comment;
+export default  Comment;
