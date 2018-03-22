@@ -1,6 +1,7 @@
 ﻿import Comment from './Comment';
 import React, { Component, PropTypes } from 'react';
 import axios from 'axios';
+import store from '../stores/configureStore';
 
 class CommentList extends Component {
     constructor(props) {
@@ -10,16 +11,20 @@ class CommentList extends Component {
         };
     }
     componentDidMount() {
+
+        store.subscribe(() => {
+            this.setState({});
+        });
         axios.get('/comments')
             .then((resp) => {
-                this.setState({ data: resp.data });
+                store.dispatch({ type: "RECEIVE_COMMENTS", data: resp.data })
             })
             .catch();
     }
     render() {
         var commentNodes = null;
-        if (this.state.data.length > 0) {
-            commentNodes = this.state.data.map(function (comment) {
+        if (store.getState().data.length > 0) {
+            commentNodes = store.getState().data.map(function (comment) {
                 return (
                     <Comment author={comment.Author} key={comment.Id}>
                         {comment.Text}
@@ -29,7 +34,7 @@ class CommentList extends Component {
         }
         return (
             <div className="commentList">
-                {commentNodes}
+                <div>{commentNodes}</div>
             </div>
         );
     }

@@ -2,20 +2,17 @@
 import { render } from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
 import CommentList from './components/CommentList';
+import store from './stores/configureStore';
 
 class AppComponent extends React.Component {
     render() {
         return (
             <div>
-                <CommentList />
+                <CommentList authData={store.getState().data} />
             </div>
         )
     }
 }
 
 
-//ReactDOM.render(<AppComponent />, document.getElementById('root'));
-render(
-    <CommentList />,
-    document.getElementById('root')
-);
+render(<AppComponent />, document.getElementById('root'));
