@@ -1,13 +1,13 @@
 ﻿import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
-import Comment from './components/Comment';
+import CommentList from './components/CommentList';
 
 class AppComponent extends React.Component {
     render() {
         return (
             <div>
-                <Comment />
+                <CommentList />
             </div>
         )
     }
@@ -16,6 +16,6 @@ class AppComponent extends React.Component {
 
 //ReactDOM.render(<AppComponent />, document.getElementById('root'));
 render(
-    <Comment />,
+    <CommentList />,
     document.getElementById('root')
 );

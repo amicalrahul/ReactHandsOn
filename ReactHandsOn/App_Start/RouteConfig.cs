@@ -11,8 +11,16 @@ namespace ReactHandsOn
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            // route attributes before areas
+            routes.MapMvcAttributeRoutes();
 
+            // area registration
+            AreaRegistration.RegisterAllAreas();
+
+            routes.LowercaseUrls = true;
+
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("bundles/{package}");
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
