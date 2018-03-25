@@ -152,6 +152,8 @@
   <ItemGroup>
     <Content Include="app\App.jsx" />
     <Content Include="app\components\Comment.jsx" />
+    <Content Include="app\components\CommentBox.jsx" />
+    <Content Include="app\components\CommentForm.jsx" />
     <Content Include="app\components\CommentList.jsx" />
     <Content Include="app\stores\configureStore.js" />
     <Content Include="Content\bootstrap.css" />

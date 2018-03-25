@@ -59,5 +59,14 @@ namespace ReactHandsOn.Controllers
 
             return View();
         }
+        [HttpPost]
+        [Route("~/comments/new")]
+        public ActionResult AddComment(CommentModel comment)
+        {
+            // Create a fake ID for this comment
+            comment.Id = _comments.Count + 1;
+            _comments.Add(comment);
+            return Content("Success :)");
+        }
     }
 }
