@@ -3,6 +3,7 @@ import axios from 'axios';
 import CommentList from './CommentList';
 import CommentForm from './CommentForm';
 import store from '../stores/configureStore';
+import { ActionTypes as types } from '../constants';
 class CommentBox extends Component {
     constructor(props) {
         super(props);
@@ -16,7 +17,7 @@ class CommentBox extends Component {
     loadCommentsFromServer() {
         axios.get('/comments')
         .then((resp) => {
-            store.dispatch({ type: "RECEIVE_COMMENTS", data: resp.data })
+            store.dispatch({ type: types.RECEIVE_COMMENTS, data: resp.data })
         })
         .catch();
     };
@@ -44,7 +45,8 @@ class CommentBox extends Component {
             <div className="commentBox">
                 <h1>Comments</h1>
                 <CommentList authData={this.props.authData} />
-                <CommentForm onCommentSubmit={this.handleCommentSubmit} />
+                <CommentForm onCommentSubmit={this.handleCommentSubmit} author={store.getState().author}
+                    text={store.getState().text} />
             </div>
         );
     }

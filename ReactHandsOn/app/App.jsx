@@ -26,7 +26,8 @@ class AppComponent extends React.Component {
     render() {
         return (
             <div>
-                <CommentBox authData={store.getState().data} url="/comments" submitUrl="/comments/new" pollInterval={5000} />
+                <CommentBox authData={store.getState().data} url="/comments"
+                    submitUrl="/comments/new" pollInterval={5000}  />
             </div>
         )
     }
