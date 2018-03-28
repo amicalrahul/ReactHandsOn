@@ -1322,7 +1322,7 @@ fbjs@0.1.0-alpha.7:
     promise "^7.0.3"
     whatwg-fetch "^0.9.0"
 
-fbjs@^0.8.0, fbjs@^0.8.16, fbjs@^0.8.4:
+fbjs@^0.8.1, fbjs@^0.8.16, fbjs@^0.8.4:
   version "0.8.16"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.16.tgz#5e67432f550dc41b572bf55847b8aca64e5337db"
   dependencies:
@@ -2357,13 +2357,13 @@ rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-addons-css-transition-group@15.0.2:
-  version "15.0.2"
-  resolved "https://registry.yarnpkg.com/react-addons-css-transition-group/-/react-addons-css-transition-group-15.0.2.tgz#8b0a4c296909ca70cdcce06fb254c204ea1f9721"
+react-addons-css-transition-group@15.3.0:
+  version "15.3.0"
+  resolved "https://registry.yarnpkg.com/react-addons-css-transition-group/-/react-addons-css-transition-group-15.3.0.tgz#759c9057f48ded7db5cd19e9bf8fce45a5a4486b"
 
-react-addons-update@15.0.2:
-  version "15.0.2"
-  resolved "https://registry.yarnpkg.com/react-addons-update/-/react-addons-update-15.0.2.tgz#3652a03004a2f65e8449206884d9d10aa75b16ff"
+react-addons-update@15.3.0:
+  version "15.3.0"
+  resolved "https://registry.yarnpkg.com/react-addons-update/-/react-addons-update-15.3.0.tgz#69782a29e037d5a621f6da88c35442e3bf113029"
 
 react-dnd-html5-backend@2.1.2:
   version "2.1.2"
@@ -2380,9 +2380,9 @@ react-dnd@2.1.4:
     invariant "^2.1.0"
     lodash "^4.2.0"
 
-react-dom@15.0.2:
-  version "15.0.2"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.0.2.tgz#f8a20ac1bc2da9eb494fce3b44c3ec19d0951e27"
+react-dom@15.3.0:
+  version "15.3.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.3.0.tgz#24a6a3df67969656b8a8225fd0d7fcb939d28bdd"
 
 react-redux@^5.0.7:
   version "5.0.7"
@@ -2410,13 +2410,13 @@ react-router@2.4.0:
     invariant "^2.2.1"
     warning "^2.1.0"
 
-react@15.0.2:
-  version "15.0.2"
-  resolved "https://registry.yarnpkg.com/react/-/react-15.0.2.tgz#63b95dfda563018a20c182300651ed933e0dd30c"
+react@15.3.0:
+  version "15.3.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-15.3.0.tgz#b06a26d26e5613888acb196aa93e9c082a9c21fa"
   dependencies:
-    fbjs "^0.8.0"
+    fbjs "^0.8.1"
     loose-envify "^1.1.0"
-    object-assign "^4.0.1"
+    object-assign "^4.1.0"
 
 readable-stream@1.0:
   version "1.0.34"

@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
+import { Provider } from 'react-redux';
 import axios from 'axios';
 import CommentBox from './components/CommentBox';
 import store from './stores/configureStore';
@@ -14,9 +15,9 @@ class AppComponent extends React.Component {
     }
     componentDidMount() {
 
-        store.subscribe(() => {
-            this.setState({});
-        });
+        //store.subscribe(() => {
+        //    this.setState({});
+        //});
         axios.get('/comments')
             .then((resp) => {
                 store.dispatch({ type: "RECEIVE_COMMENTS", data: resp.data })
@@ -26,7 +27,7 @@ class AppComponent extends React.Component {
     render() {
         return (
             <div>
-                <CommentBox authData={store.getState().data} url="/comments"
+                <CommentBox url="/comments"
                     submitUrl="/comments/new" pollInterval={5000}  />
             </div>
         )
@@ -34,4 +35,4 @@ class AppComponent extends React.Component {
 }
 
 
-render(<AppComponent />, document.getElementById('root'));
+render(<Provider store={store}><AppComponent /></Provider>, document.getElementById('root'));

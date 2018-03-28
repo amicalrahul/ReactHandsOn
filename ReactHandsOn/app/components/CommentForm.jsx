@@ -1,6 +1,7 @@
 ﻿import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import { ActionTypes as types } from '../constants';
-import store from '../stores/configureStore';
+//import store from '../stores/configureStore';
 class CommentForm extends Component {
     constructor(props) {
         super(props);
@@ -9,11 +10,11 @@ class CommentForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleAuthorChange(e) {
-        store.dispatch({ type: types.CHANGE_AUTHOR_NAME, data: { author: e.target.value } });
+        this.props.dispatch({ type: types.CHANGE_AUTHOR_NAME, data: { author: e.target.value } });
         //this.setState({ author: e.target.value });
     };
     handleTextChange(e) {
-        store.dispatch({ type: types.CHANGE_AUTHOR_TEXT, data: { text: e.target.value } });
+        this.props.dispatch({ type: types.CHANGE_AUTHOR_TEXT, data: { text: e.target.value } });
         //this.setState({ text: e.target.value });
     };
     handleSubmit(e) {
@@ -46,4 +47,9 @@ class CommentForm extends Component {
         );
     }
 };
-export default CommentForm;
+export default connect((state, props) => {
+    return {
+        author: state.author,
+        text: state.text
+    }
+})(CommentForm);
