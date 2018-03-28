@@ -1,4 +1,5 @@
-﻿import { createStore } from 'redux';
+﻿import { applyMiddleware, createStore } from 'redux';
+import { createLogger } from 'redux-logger'
 import { ActionTypes as types } from '../constants';
 
 var defaultState = {
@@ -29,7 +30,12 @@ function comments(state = defaultState, action) {
     }
     return state;
 }
-
-var store = createStore(comments);
+const logger = createLogger({
+    collapsed: true
+});
+var store = createStore(
+    comments,
+    applyMiddleware(logger)
+);
 
 export default store;
