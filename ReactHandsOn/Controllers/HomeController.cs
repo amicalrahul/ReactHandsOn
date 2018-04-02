@@ -59,6 +59,10 @@ namespace ReactHandsOn.Controllers
 
             return View();
         }
+        public ActionResult Courses()
+        {
+            return View();
+        }
         [HttpPost]
         [Route("~/comments/new")]
         public ActionResult AddComment(CommentModel comment)

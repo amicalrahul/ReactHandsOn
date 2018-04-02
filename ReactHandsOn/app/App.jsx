@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import axios from 'axios';
 import CommentBox from './components/CommentBox';
 import store from './stores/configureStore';
+import { connect } from 'react-redux';
 
 class AppComponent extends React.Component {
     constructor(props) {
@@ -26,13 +27,24 @@ class AppComponent extends React.Component {
     }
     render() {
         return (
-            <div>
-                <CommentBox url="/comments"
-                    submitUrl="/comments/new" pollInterval={5000}  />
+            <div className="container-fluid">                
+                {this.props.children}
             </div>
-        )
+        );
     }
 }
 
+function mapStateToProps(state, ownProps) {
+    return {
+        state
+    };
+}
+export default connect((state, props) => {
+    return {
+        data: state.data
+    }
+})(AppComponent);
+//export default connect(mapStateToProps)(AppComponent);
 
-render(<Provider store={store}><AppComponent /></Provider>, document.getElementById('root'));
+
+//render(<Provider store={store}><AppComponent /></Provider>, document.getElementById('root'));

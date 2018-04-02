@@ -15,7 +15,7 @@ var config = {
     devtool: 'eval-source-map',
     cache: true,
     entry: {
-        main: path.join(__dirname, "App", "App.jsx"),
+        main: path.join(__dirname, "App", "index.js"),
         vendor: vendorPackages
     },
     output: {

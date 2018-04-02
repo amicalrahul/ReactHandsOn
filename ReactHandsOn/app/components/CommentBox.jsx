@@ -35,7 +35,7 @@ class CommentBox extends Component {
         data.append('Text', comment.Text);
 
         var xhr = new XMLHttpRequest();
-        xhr.open('post', this.props.submitUrl, true);
+        xhr.open('post', "/comments/new", true);
         xhr.onload = function () {
             this.loadCommentsFromServer();
         }.bind(this);
